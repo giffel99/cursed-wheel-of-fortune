@@ -1,0 +1,1 @@
+cursed-wheel-of-fortune
