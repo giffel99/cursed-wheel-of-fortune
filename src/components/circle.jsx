@@ -1,86 +1,74 @@
 import React, { Component } from 'react';
-import arrow from "../assets/arrow.png"
+import arrow from "../assets/fireball.png"
 import "../App.css"
 class Circle extends Component {
 
-    constructor(props) {
-      super(props);
-        this.state = {
-            rotate: false,
-            toggle: false,
-            angle: 0
-        };
-      //  this.rotatingDone = this.rotatingDone.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {
+      angle: 0,
 
-      
-      }
-/*
-      componentDidMount() {
-        const elm = this.image;
-        elm.addEventListener("animationend", this.rotatingDone);
-      }
-      componentWillUnmount() {
-        const elm = this.image;
-        elm.removeEventListener("animationend", this.rotatingDone);
-      }
-    
-      rotatingDone() {
-        this.setState(function(state) {
-          return {
-            toggle: !state.toggle,
-            rotate: false
-          };
-        });
-      }
-     */
-    
-     /* rotationStyle =  () =>  {
-          return {
-        transform:  `rotate(${this.state.angle}deg)` , 
-        transition: 'transform 150ms ease', // smooth transition
-       }
     };
-*/
-      rotate(amount){
-          //(this.state.angle % 360 === 0)?
-         
-        this.setState({ angle:  this.state.angle + 20 * amount, rotate:true });
-        console.log("State set " + this.state.angle)
-        
-      }
 
-    circleStyles = {
-        width:700,
-        height:700,
+
+  }
+  rotate(amount) {
+
+    this.setState({ angle: this.state.angle + 20 * amount, rotate: true });
+
+  }
+
+  relativeX = (x) => {
+    let rad = 280;
+    let ang = x * 2 * Math.PI / 10;
+    console.log(this.props.listOfNollK.length)
+
+    return Math.cos(ang) * rad + 310;
+  }
+
+  relativeY = (y) => {
+    let rad = 280;
+    let ang = y * 2 * Math.PI / 10;
+
+    return Math.sin(ang) * rad + 280 * 2;
+  }
+
+  listOfNollK = () => {
+
+    return (this.props.listOfNollK.map(item => {
+      console.log(item.text + "X " + this.relativeX(item.number));
+      console.log(item.text + "Y " + this.relativeY(item.number));
+      return (<div key={item.number} style={{
+        zIndex: item.number,
+        fontSize: '5rem',
+        width: '10px',
+        position: 'absolute', top: `${this.relativeY(item.number)}px`, left: `${this.relativeX(item.number)}px`
+      }} className="nollk text-light" > {item.text}</div>);
+    }));
+  }
+
+  render() {
+    this.rotationStyle = {
+      transform: `rotate(${this.state.angle}deg)`,
+      transition: `transform ${10000}ms ease`, // smooth transition
+      position: 'relative',
+      left: 0,
+      top: 0,
+      zIndex: '50'
     };
-    
-    render() { 
-            this.rotationStyle = {
-            transform:  `rotate(${this.state.angle}deg)` , 
-            transition: `transform ${ 10000 }ms ease`, // smooth transition
-            
-           };
 
-                return (
-            <div style={this.circleStyles} className="  d-flex justify-content-center align-items-center rounded-circle ">
-            <div className="" >
-            
-            <img src={
-                arrow
-            }
-            alt="Nothing"
-        ref={elm => {
-          this.image = elm;
-        }}
-       style={this.rotationStyle}
-       className=""
-      />
+    return (
+      <div className=" globe bg-primary  d-flex justify-content-center align-items-center rounded-circle ">
+        <div>
 
-            </div>
+          {this.listOfNollK()}
 
-            </div>
-        );
-    }
+          {<img src={arrow} alt="Nothing" ref={elm => { this.image = elm; }} style={this.rotationStyle} />}
+        </div>
+
+      </div>
+    );
+  }
 }
 
 export default Circle;

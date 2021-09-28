@@ -9,6 +9,24 @@
   background-size: 100% 100%;
   margin:auto;
 }
+.nollk{ 
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: black;
+}
+
+.worldwide{
+  background-image: url(./assets/pitbull.png);
+  background-repeat: no-repeat;
+  background-size: 120% 120%;
+}
+.globe{
+  width: 600px;
+  height: 600px;
+
+  background-image: url(./assets/earth.png);
+  background-repeat: no-repeat;
+  background-size: 120% 120%;
+}
 
 .position{
   position: relative;
