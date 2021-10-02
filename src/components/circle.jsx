@@ -50,7 +50,7 @@ class Circle extends Component {
   render() {
     this.rotationStyle = {
       transform: `rotate(${this.state.angle}deg)`,
-      transition: `transform ${10000}ms ease`, // smooth transition
+      transition: `transform ${20000}ms ease`, // smooth transition
       position: 'relative',
       left: 0,
       top: 0,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Circle from './circle';
-import fireBall from "../assets/fireball-long.m4a";
+import fireBall from "../assets/fireball-fade.mp3";
 class Index extends Component {
 
   constructor(props) {
@@ -18,17 +18,19 @@ class Index extends Component {
 
   async handleClick() {
     this.circleRef.current.rotate(100 + Math.floor(Math.random() * 200));
+
     this.state.audio.volume = 1;
     this.state.audio.play()
-    this.sleep(10000)
+   /* this.sleep(20000)
       .then(() => { this.fade(this.state.audio) });
-  }
+  */
+    }
 
   fade = () => {
     if (this.state.audio.volume - 0.01 > 0) {
       this.state.audio.volume -= 0.01;
       console.log("!!!");
-      setTimeout(this.fade, 20);
+      setTimeout(this.fade, 10);
 
     } else {
       this.state.audio.pause();
